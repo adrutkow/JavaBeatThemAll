@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Game {
 
-    JFrame window = new JFrame();
+    public JFrame window = new JFrame();
     int[] defaultWindowSize = {426, 240};
     GamePanel panel;
     boolean isRunning = true;
@@ -261,6 +261,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         ((Graphics2D) g).scale((double)scaleX, (double)scaleY);
         g.setColor(new Color(124, 148, 161));
 
+        if (p == null) return;
 
         if (p.hasFlag("DIanimation")){
             double v = 1.7;
@@ -342,8 +343,11 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             window.setExtendedState(JFrame.MAXIMIZED_BOTH);
             //window.setVisible(true);
         }
-        if (keyEvent.getKeyChar() == 'h'){
+        if (keyEvent.getKeyChar() == 'h') {
             Game.currentGame.window.setUndecorated(false);
+        }
+        if (keyEvent.getKeyChar() == 'x'){
+            Game.currentGame.isRunning = false;
         }
     }
 
