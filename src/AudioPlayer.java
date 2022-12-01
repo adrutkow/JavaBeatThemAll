@@ -9,8 +9,10 @@ public class AudioPlayer {
 
     public AudioPlayer() throws UnsupportedAudioFileException, IOException {
         String[] filepaths = {
-                "C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\sounds\\coin.wav",
-                "C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\sounds\\redsun.wav",
+                ".\\src\\assets\\sounds\\coin.wav",
+                ".\\src\\assets\\sounds\\redsun.wav",
+                //"C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\sounds\\coin.wav",
+                //"C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\sounds\\redsun.wav",
         };
 
         for (int i = 0; i < filepaths.length; i++) {
