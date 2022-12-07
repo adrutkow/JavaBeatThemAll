@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Animation{
 
     int length;
@@ -8,6 +10,7 @@ public class Animation{
     int timer = 0;
     Entity owner;
     public int repeatAt = 0;
+    public ArrayList<String> flags = new ArrayList<>();
 
     public Animation(Entity owner, int len, int _id, boolean _repeat, int[] _speed){
         this.owner = owner;
@@ -53,6 +56,10 @@ public class Animation{
     public void onAnimationEnd(){
 
     }
+
+    public void onAnimationCancel(){
+
+    }
 }
 
 
@@ -88,5 +95,57 @@ class ParryAnimation extends Animation{
     public void onAnimationEnd(){
         Game.currentGame.player.state = "idle";
         Game.currentGame.player.changeAnimation(0);
+    }
+}
+
+class BanditBringerAnimation extends Animation {
+    public BanditBringerAnimation(Entity owner, int len, int _id, boolean _repeat, int[] _speed){
+        super(owner, len, _id, _repeat, _speed);
+        flags.add("banditbringer");
+    }
+
+    @Override
+    public void onFrameChange(){
+        if (currentFrame == 2){
+            double force = 3;
+            owner.velocityX = force;
+            if (owner.flipX) owner.velocityX = -force;
+            new Hurtbox(owner, 20, 10, 5, 20, 32);
+        }
+    }
+
+    @Override
+    public void onAnimationEnd(){
+        owner.velocityX = 0;
+        owner.state = "idle";
+    }
+
+    @Override
+    public void onAnimationCancel(){
+        onAnimationEnd();
+    }
+
+}
+
+class KickAnimation extends Animation{
+
+    public KickAnimation(Entity owner, int len, int _id, boolean _repeat, int[] _speed) {
+        super(owner, len, _id, _repeat, _speed);
+    }
+
+    @Override
+    public void onFrameChange() {
+        super.onFrameChange();
+        if (currentFrame == 1){
+            int xOffset = 0;
+            if (owner.flipX) xOffset = -30;
+            new Hurtbox(owner, 20 + xOffset,35, 30, 10, 10);
+        }
+    }
+
+    @Override
+    public void onAnimationEnd(){
+        owner.state = "idle";
+        owner.changeAnimation(0);
     }
 }

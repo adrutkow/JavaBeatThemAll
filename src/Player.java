@@ -38,11 +38,14 @@ public class Player extends Entity {
         goof.repeatAt = 2;
         extraAnimations.add(goof);
 
-        Animation banditbringer = new Animation(this, 3, 21, false, new int[]{12, 12, 12});
+        Animation banditbringer = new BanditBringerAnimation(this, 3, 21, false, new int[]{4, 12, 48});
         extraAnimations.add(banditbringer);
 
         Animation falling = new Animation(this, 6, 22, false, new int[]{8, 8, 8, 8, 8, 8});
         extraAnimations.add(falling);
+
+        Animation kick = new KickAnimation(this, 4, 23, false, new int[]{4, 2, 8, 4});
+        extraAnimations.add(kick);
 
         weapon = new AxeWeapon(this);
         animations = weapon.animations;
@@ -70,10 +73,19 @@ public class Player extends Entity {
         ArrayList keysPressed = Game.currentGame.panel.keysPressed;
         ArrayList mouseButtonsPressed = Game.currentGame.panel.mouseButtonsPressed;
 
+
+        int attack1Key = 65; // A
+        int attack2Key = 83; // S
+        int blockKey = 68; // D
+        int ability1Key = 90; // Z
+        int ability2Key = 88; // X
+        int ability3Key = 67; // C
+
+
         if (hasFlag("DIanimation") || hasFlag("dontChangeAnimation") || hasFlag("stunned")) return;
 
-        // A
-        if (keysPressed.contains(65) && state != "parry"){
+        // left
+        if (keysPressed.contains(37) && state != "parry"){
             move(-speed, 0);
             flipX = true;
             if (state != "jump") {
@@ -83,8 +95,8 @@ public class Player extends Entity {
 
         }
 
-        // D
-        if (keysPressed.contains(68) && state != "parry"){
+        // right
+        if (keysPressed.contains(39) && state != "parry"){
             move(speed, 0);
             flipX = false;
             if (state != "jump") {
@@ -94,26 +106,33 @@ public class Player extends Entity {
         }
 
 
-        // SPACE
-        if (keysPressed.contains(32) || mouseButtonsPressed.contains(1)) {
-            if (!(keysPressed.contains(68) || keysPressed.contains(65))){
+        // attack
+        if (keysPressed.contains(attack1Key) || mouseButtonsPressed.contains(1)) {
+            if (!(keysPressed.contains(39) || keysPressed.contains(37))){
                 attack();
             }
         }
 
+        // attack 2
+        if (keysPressed.contains(attack2Key)){
+            if (!(keysPressed.contains(39) || keysPressed.contains(37))){
+                attack2();
+            }
+        }
+
         // RIGHT CLICK
-        if (mouseButtonsPressed.contains(3)){
+        if (keysPressed.contains(blockKey) ||mouseButtonsPressed.contains(3)){
             parry();
         }
 
         // W
-        if (keysPressed.contains(87)) {
+        if (keysPressed.contains(38) || keysPressed.contains(32)) {
             jump();
             changeAnimation(9);
             state = "jump";
         }
 
-        if (!keysPressed.contains(68) && !keysPressed.contains(65)){
+        if (!keysPressed.contains(39) && !keysPressed.contains(37)){
             if (state != "attack" && state != "parry" && state != "jump" && !flags.contains("stunned")) changeAnimation(0);
         }
 
@@ -134,7 +153,7 @@ public class Player extends Entity {
         }
 
         // 4
-        if (keysPressed.contains(52)){
+        if (keysPressed.contains(ability3Key)){
             Game.currentGame.freezeEntities(80);
             changeAnimation(5);
             this.addEffect(new FlagDurationEffect(this, 80, "DIanimation"));
@@ -142,7 +161,7 @@ public class Player extends Entity {
         }
 
         // 5
-        if (keysPressed.contains(53)){
+        if (keysPressed.contains(ability2Key)){
             changeAnimation(6);
             this.addEffect(new FlagDurationEffect(this, 120, "DIanimation"));
             this.addEffect(new FlagDurationEffect(this, 300, "timestop"));
@@ -155,8 +174,10 @@ public class Player extends Entity {
         }
 
         // 7
-        if (keysPressed.contains(55)){
+        if (keysPressed.contains(ability1Key)){
             changeAnimation(8);
+            state = "attack";
+
         }
 
 
@@ -208,6 +229,11 @@ public class Player extends Entity {
         changeAnimation(2);
     }
 
+    public void attack2(){
+        state = "attack";
+        changeAnimation(10);
+    }
+
     public void parry(){
 
         if (hasFlag("parryOnCooldown")) return;
@@ -230,6 +256,13 @@ public class Player extends Entity {
 
     public void onLand(){
         state = "idle";
+    }
+
+    public void onHitTarget(Entity t){
+        if (animations.get(currentAnimationId).flags.contains("banditbringer")){
+            velocityX = 0;
+            changeAnimation(0);
+        }
     }
 
 }

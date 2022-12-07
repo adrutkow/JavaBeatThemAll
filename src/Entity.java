@@ -181,6 +181,7 @@ public class Entity {
 
     public void changeAnimation(int id){
         if (currentAnimationId == id) return;
+        if (currentAnimationId != -1) animations.get(currentAnimationId).onAnimationCancel();
         currentAnimationId = id;
         animations.get(currentAnimationId).reset();
     }

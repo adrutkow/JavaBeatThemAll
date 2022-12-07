@@ -214,6 +214,8 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         spriteAnimations.add(GetAnimationFromImage(image, 48));
         image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_jump.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
+        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_kick.png"));
+        spriteAnimations.add(GetAnimationFromImage(image, 48));
 
 
         // 0 - p attack
@@ -351,6 +353,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent keyEvent) {
         if (!keysPressed.contains(keyEvent.getKeyCode())){
             keysPressed.add(keyEvent.getKeyCode());
+            System.out.println(keyEvent.getKeyCode());
         }
     }
 
