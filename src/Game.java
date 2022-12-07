@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Game {
 
-    JFrame window = new JFrame();
+    public JFrame window = new JFrame();
     int[] defaultWindowSize = {426, 240};
     GamePanel panel;
     boolean isRunning = true;
@@ -161,58 +161,58 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
     public GamePanel() throws IOException {
         gameInstance = Game.currentGame;
         BufferedImage image;
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\tileset.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\tileset.png"));
         GetTilesFromTileSet(image);
         // 0
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_attack.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_attack.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_idle.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_idle.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_jump.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_jump.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_walk.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_walk.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_hurt.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_hurt.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
         // 5
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\enemy\\enemy_walk.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\enemy\\enemy_walk.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\enemy\\enemy_hurt.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\enemy\\enemy_hurt.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\collectibles\\coin.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\collectibles\\coin.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 8));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_parry.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_parry.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\enemy\\enemy_attack.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\enemy\\enemy_attack.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
         // 10
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_leo_idle.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_leo_idle.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_leo_walk.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_leo_walk.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_leo_attack.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_leo_attack.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_leo_parry.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_leo_parry.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_sol_idle.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_sol_idle.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
         // 15
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_sol_walk.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_sol_walk.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_sol_attack.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_sol_attack.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_sol_parry.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_sol_parry.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_sol_di.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_sol_di.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_timestop.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_timestop.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
         // 20
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_goofy.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_goofy.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_banditbringer.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_banditbringer.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
-        image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_jump.png"));
+        image = ImageIO.read(new File(".\\src\\assets\\player\\player_jump.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
         image = ImageIO.read(new File("C:\\Languages\\Programming\\Java Projects\\StickFigureAI\\src\\assets\\player\\player_kick.png"));
         spriteAnimations.add(GetAnimationFromImage(image, 48));
@@ -263,6 +263,7 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
         ((Graphics2D) g).scale((double)scaleX, (double)scaleY);
         g.setColor(new Color(124, 148, 161));
 
+        if (p == null) return;
 
         if (p.hasFlag("DIanimation")){
             double v = 1.7;
@@ -344,8 +345,11 @@ class GamePanel extends JPanel implements ActionListener, KeyListener {
             window.setExtendedState(JFrame.MAXIMIZED_BOTH);
             //window.setVisible(true);
         }
-        if (keyEvent.getKeyChar() == 'h'){
+        if (keyEvent.getKeyChar() == 'h') {
             Game.currentGame.window.setUndecorated(false);
+        }
+        if (keyEvent.getKeyChar() == 'x'){
+            Game.currentGame.isRunning = false;
         }
     }
 

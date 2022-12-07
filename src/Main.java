@@ -1,5 +1,7 @@
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class Main {
@@ -35,5 +37,7 @@ public class Main {
                 frames = 0;
             }
         }
+        JFrame f = Game.currentGame.window;
+        f.dispatchEvent(new WindowEvent (f, WindowEvent.WINDOW_CLOSING));
     }
 }
